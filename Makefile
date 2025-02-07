@@ -34,29 +34,29 @@ YELLOW = \033[0;93m
 all: $(FT_PRINTF_DIR)/libftprintf.a $(GNL_DIR)/libgnl.a $(LIBFT_DIR)/libft.a $(NAME)
 
 $(NAME): $(OBJS)
-    @$(CC) $(CFLAGS) $(OBJS) -L$(FT_PRINTF_DIR) -lftprintf \
+	@$(CC) $(CFLAGS) $(OBJS) -L$(FT_PRINTF_DIR) -lftprintf \
         -L$(GNL_DIR) -lftgnl -L$(LIBFT_DIR) -lft -o $(NAME)
-    @echo "$(GREEN)$(NAME) compiled!"
+	@echo "$(GREEN)$(NAME) compiled!"
 
 # Libraries
 $(FT_PRINTF_DIR)/libftprintf.a:
-    @make -C $(FT_PRINTF_DIR)
-    @echo "$(CYAN)libftprintf compiled!"
+	@make -C $(FT_PRINTF_DIR)
+	@echo "$(CYAN)libftprintf compiled!"
 
 $(GNL_DIR)/libgnl.a:
-    @make -C $(GNL_DIR)
-    @echo "$(CYAN)get_next_line compiled!"
+	@make -C $(GNL_DIR)
+	@echo "$(CYAN)get_next_line compiled!"
 
 $(LIBFT_DIR)/libft.a:
-    @make -C $(LIBFT_DIR)
-    @echo "$(CYAN)libft compiled!"
+	@make -C $(LIBFT_DIR)
+	@echo "$(CYAN)libft compiled!"
 
 # Rules
 $(SRC_DIR)/%.o: $(SRC_DIR)/%.c
-    @$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 $(UTILS_DIR)/%.o: $(UTILS_DIR)/%.c
-    @$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
 
 clean:
 	@rm -f $(OBJS)

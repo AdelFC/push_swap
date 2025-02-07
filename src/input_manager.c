@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:24:11 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/02/07 16:09:03 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/02/07 18:23:07 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,28 @@ t_stack *ft_initialize_stack(int argc, char **argv, t_stack *stack_a)
 		}
 	}
 	return (stack_a);
+}
+
+int	ft_check_args(int argc, char **argv)
+{
+	int		i;
+	long	number;
+
+	i = 1;
+	if (argc < 2)
+		return (ft_print_error(1), 1);
+	if (argc == 2)
+		argv = ft_split(argv[1], ' ');
+	while (argv[i])
+	{
+		if (!ft_isnum(argv[i]))
+			return (ft_print_error(3), 1);
+		number = ft_atol(argv[i]);
+		if (number < INT_MIN || number > INT_MAX)
+			return (ft_print_error(4), 1);
+		i++;
+	}
+	if (ft_check_double(argv))
+		return (ft_print_error(2), 1);
+	return (0);
 }
