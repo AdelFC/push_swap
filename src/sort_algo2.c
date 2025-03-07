@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:47:04 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/06 20:51:55 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:18:01 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ void	ft_cost(t_stack **stack_a, t_stack **stack_b)
 	}
 }
 
-void	execute_cheapest_move(t_stack **stack_a, t_stack **stack_b)
+void	ft_cheapest(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp;
 	int		cheapest;
 	int		cost_a;
 	int		cost_b;
-	int		move_cost;
+	int		cost;
 
 	if (!stack_a || !*stack_a || !stack_b || !*stack_b)
 		return ;
@@ -53,42 +53,41 @@ void	execute_cheapest_move(t_stack **stack_a, t_stack **stack_b)
 	cheapest = INT_MAX;
 	while (tmp)
 	{
-		move_cost = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
-		if (move_cost < cheapest)
+		cost = ft_abs(tmp->cost_a) + ft_abs(tmp->cost_b);
+		if (cost < cheapest)
 		{
-			cheapest = move_cost;
+			cheapest = cost;
 			cost_a = tmp->cost_a;
 			cost_b = tmp->cost_b;
 		}
 		tmp = tmp->next;
 	}
-	execute_move(stack_a, stack_b, cost_a, cost_b);
+	ft_execute(stack_a, stack_b, cost_a, cost_b);
 }
 
 void	ft_rotate_to_min(t_stack **stack_a)
 {
-	int	lowest_pos;
-	int	stack_size;
+	int	min_p;
+	int	size;
 
 	if (!stack_a || !*stack_a)
 		return ;
-
-	stack_size = ft_stacksize(*stack_a);
-	lowest_pos = find_lowest_position(stack_a);
-	if (lowest_pos > stack_size / 2)
+	size = ft_stacksize(*stack_a);
+	min_p = ft_min_position(stack_a);
+	if (min_p > size / 2)
 	{
-		while (lowest_pos < stack_size)
+		while (min_p < size)
 		{
-            do_reverse_rotate(stack_a, 'a');
-			lowest_pos++;
+			do_reverse_rotate(stack_a, 'a');
+			min_p++;
 		}
 	}
 	else
 	{
-		while (lowest_pos > 0)
+		while (min_p > 0)
 		{
 			do_rotate(stack_a, 'a');
-			lowest_pos--;
+			min_p--;
 		}
 	}
 }

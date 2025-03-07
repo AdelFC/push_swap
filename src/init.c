@@ -6,13 +6,13 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 18:40:47 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/05 18:41:39 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:39:24 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack *ft_initialize_stack(int argc, char **argv, t_stack *stack_a)
+t_stack	*ft_initialize_stack(int argc, char **argv, t_stack *stack_a)
 {
 	int	i;
 

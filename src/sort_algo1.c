@@ -6,42 +6,42 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:18:11 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/06 21:18:29 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:23:07 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push_except_three(t_stack **stack_a, t_stack **stack_b)
+void	ft_except_three(t_stack **stack_a, t_stack **stack_b)
 {
-    int count;
-    int size;
-    int i;
+	int	count;
+	int	size;
+	int	i;
 
-    if (!stack_a || !(*stack_a) || !stack_b)
-        return;
-    count = 0;
-    size = ft_stacksize(*stack_a);
-    i = 0;
-    while (size > 6 && i < size && count < size / 2)
-    {
-        if ((*stack_a)->index <= size / 2)
-        {
-            do_push(stack_a, stack_b, 'b');
-            count++;
-        }
-        else
-            do_rotate(stack_a, 'a');
-        i++;
-    }
-    while (ft_stacksize(*stack_a) > 3)
-    {
-        do_push(stack_a, stack_b, 'b');
-        count++;
-    }
+	if (!stack_a || !(*stack_a) || !stack_b)
+		return ;
+	count = 0;
+	size = ft_stacksize(*stack_a);
+	i = 0;
+	while (size > 6 && i < size && count < size / 2)
+	{
+		if ((*stack_a)->index <= size / 2)
+		{
+			do_push(stack_a, stack_b, 'b');
+			count++;
+		}
+		else
+			do_rotate(stack_a, 'a');
+		i++;
+	}
+	while (ft_stacksize(*stack_a) > 3)
+	{
+		do_push(stack_a, stack_b, 'b');
+		count++;
+	}
 }
 
-void	assign_position(t_stack **stack)
+void	ft_position(t_stack **stack)
 {
 	t_stack	*tmp;
 	int		i;
@@ -58,80 +58,77 @@ void	assign_position(t_stack **stack)
 	}
 }
 
-int	find_target(t_stack **stack_a, int b_index)
+int	ft_target(t_stack **stack_a, int index_b)
 {
 	t_stack	*tmp;
-	int		closest;
-	int		pos_target;
-	int		min_index;
-	int		min_pos;
+	int		target_holder;
+	int		target_p;
+	int		min_i;
+	int		min_p;
 
 	if (!stack_a || !*stack_a)
 		return (0);
-
 	tmp = *stack_a;
-	closest = INT_MAX;
-	min_index = INT_MAX;
-	pos_target = 0;
-	min_pos = 0;
+	target_holder = INT_MAX;
+	min_i = INT_MAX;
+	target_p = 0;
+	min_p = 0;
 	while (tmp)
 	{
-		if (tmp->index > b_index && tmp->index < closest)
+		if (tmp->index > index_b && tmp->index < target_holder)
 		{
-			closest = tmp->index;
-			pos_target = tmp->position;
+			target_holder = tmp->index;
+			target_p = tmp->position;
 		}
-		if (tmp->index < min_index)
+		if (tmp->index < min_i)
 		{
-			min_index = tmp->index;
-			min_pos = tmp->position;
+			min_i = tmp->index;
+			min_p = tmp->position;
 		}
 		tmp = tmp->next;
 	}
-	if (closest != INT_MAX)
-		return pos_target;
+	if (target_holder != INT_MAX)
+		return (target_p);
 	else
-		return min_pos;
+		return (min_p);
 }
 
-
-void	assign_target_positions(t_stack **stack_a, t_stack **stack_b)
+void	ft_target_position(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*tmp_b;
 
 	if (!stack_a || !*stack_a || !stack_b || !*stack_b)
 		return ;
-	assign_position(stack_a);
-	assign_position(stack_b);
+	ft_position(stack_a);
+	ft_position(stack_b);
 	tmp_b = *stack_b;
 	while (tmp_b)
 	{
-		tmp_b->target = find_target(stack_a, tmp_b->index);
+		tmp_b->target = ft_target(stack_a, tmp_b->index);
 		tmp_b = tmp_b->next;
 	}
 }
 
-
-int	find_lowest_position(t_stack **stack)
+int	ft_min_position(t_stack **stack)
 {
 	t_stack	*tmp;
-	int		lowest_index;
-	int		lowest_pos;
+	int		min_i;
+	int		min_p;
 
 	if (!stack || !*stack)
 		return (-1);
-	assign_position(stack);
+	ft_position(stack);
 	tmp = *stack;
-	lowest_index = INT_MAX;
-	lowest_pos = 0;
+	min_i = INT_MAX;
+	min_p = 0;
 	while (tmp)
 	{
-		if (tmp->index < lowest_index)
+		if (tmp->index < min_i)
 		{
-			lowest_index = tmp->index;
-			lowest_pos = tmp->position;
+			min_i = tmp->index;
+			min_p = tmp->position;
 		}
 		tmp = tmp->next;
 	}
-	return (lowest_pos);
+	return (min_p);
 }

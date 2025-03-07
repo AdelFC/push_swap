@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 10:41:43 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/05 13:28:03 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 15:44:37 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void				ft_stackiter(t_stack *stack, void (*f)(int));
 t_stack				*ft_stacklast(t_stack *stack);
 t_stack				*ft_stacknew(int value);
 int					ft_stacksize(t_stack *stack);
-int                 ft_stack_min(t_stack *stack);
-int                 ft_stack_max(t_stack *stack);
+int					ft_stack_min(t_stack *stack);
+int					ft_stack_max(t_stack *stack);
 
 #endif

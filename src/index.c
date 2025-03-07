@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:50:17 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/06 20:44:32 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:19:17 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	ft_index(t_stack *stack_a, int stack_size)
 {
-	t_stack	*ptr;
-	t_stack	*highest;
+	t_stack	*p;
+	t_stack	*max;
 	int		value;
 
 	while (--stack_size > 0)
 	{
-		ptr = stack_a;
+		p = stack_a;
 		value = INT_MIN;
-		highest = NULL;
-		while (ptr)
+		max = NULL;
+		while (p)
 		{
-			if (ptr->index == 0 && ptr->value >= value)
+			if (p->index == 0 && p->value >= value)
 			{
-				value = ptr->value;
-				highest = ptr;
+				value = p->value;
+				max = p;
 			}
-			ptr = ptr->next;
+			p = p->next;
 		}
-		if (highest)
-			highest->index = stack_size;
+		if (max)
+			max->index = stack_size;
 	}
 }

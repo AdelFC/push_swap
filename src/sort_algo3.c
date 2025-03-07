@@ -6,13 +6,14 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 20:29:04 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/06 20:59:51 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:14:39 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_reverse_rotate_both_cost(t_stack **stack_a, t_stack **stack_b, int *cost_a, int *cost_b)
+void	do_reverse_rotate_both_cost(t_stack **stack_a, t_stack **stack_b,
+		int *cost_a, int *cost_b)
 {
 	while (*cost_a < 0 && *cost_b < 0)
 	{
@@ -22,7 +23,8 @@ void	do_reverse_rotate_both_cost(t_stack **stack_a, t_stack **stack_b, int *cost
 	}
 }
 
-void	do_rotate_both_cost(t_stack **stack_a, t_stack **stack_b, int *cost_a, int *cost_b)
+void	do_rotate_both_cost(t_stack **stack_a, t_stack **stack_b, int *cost_a,
+		int *cost_b)
 {
 	while (*cost_a > 0 && *cost_b > 0)
 	{
@@ -49,7 +51,8 @@ void	do_rotate_cost(t_stack **stack, int *cost, char type)
 	}
 }
 
-void	execute_move(t_stack **stack_a, t_stack **stack_b, int cost_a, int cost_b)
+void	ft_execute(t_stack **stack_a, t_stack **stack_b, int cost_a,
+		int cost_b)
 {
 	if (cost_a < 0 && cost_b < 0)
 		do_reverse_rotate_both_cost(stack_a, stack_b, &cost_a, &cost_b);
