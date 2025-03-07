@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:35:23 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 16:18:38 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 22:48:43 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,36 +54,31 @@ int	ft_check_double(char **argv)
 
 int	ft_check_args(int argc, char **argv)
 {
-	int		i;
 	long	n;
 	char	**split_argv;
 
-	i = 1;
 	split_argv = NULL;
 	if (argc < 2)
 		return (-1);
 	if (argc == 2)
 	{
 		split_argv = ft_split(argv[1], ' ');
+		if (!split_argv[0])
+			return (ft_print_error(1), -1);
 		argv = split_argv;
-		i = 0;
 	}
-	if (!split_argv[0])
-		return (ft_print_error(1), -1);
-	while (argv[i])
+	while (*argv)
 	{
-		if (!ft_isnum(argv[i]))
-			return (ft_print_error(3), -1);
-		n = ft_atol(argv[i]);
+		if (!ft_isnum(*argv))
+			return (ft_free_split(split_argv), ft_print_error(3), -1);
+		n = ft_atol(*argv);
 		if (n < INT_MIN || n > INT_MAX)
-			return (ft_print_error(4), -1);
-		i++;
+			return (ft_free_split(split_argv), ft_print_error(4), -1);
+		argv++;
 	}
-	if (ft_check_double(argv))
-		return (ft_print_error(2), -1);
-	if (argc == 2)
-		ft_free_split(split_argv);
-	return (0);
+	if (ft_check_double(split_argv ? split_argv : argv))
+		return (ft_free_split(split_argv), ft_print_error(2), -1);
+	return (ft_free_split(split_argv), 0);
 }
 
 void	ft_free_split(char **split)

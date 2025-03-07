@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:18:11 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 16:23:07 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 22:44:54 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,16 +63,12 @@ int	ft_target(t_stack **stack_a, int index_b)
 	t_stack	*tmp;
 	int		target_holder;
 	int		target_p;
-	int		min_i;
-	int		min_p;
 
 	if (!stack_a || !*stack_a)
 		return (0);
 	tmp = *stack_a;
 	target_holder = INT_MAX;
-	min_i = INT_MAX;
 	target_p = 0;
-	min_p = 0;
 	while (tmp)
 	{
 		if (tmp->index > index_b && tmp->index < target_holder)
@@ -80,18 +76,13 @@ int	ft_target(t_stack **stack_a, int index_b)
 			target_holder = tmp->index;
 			target_p = tmp->position;
 		}
-		if (tmp->index < min_i)
-		{
-			min_i = tmp->index;
-			min_p = tmp->position;
-		}
 		tmp = tmp->next;
 	}
 	if (target_holder != INT_MAX)
 		return (target_p);
-	else
-		return (min_p);
+	return (ft_min_position(stack_a));
 }
+
 
 void	ft_target_position(t_stack **stack_a, t_stack **stack_b)
 {

@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:27:38 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 16:17:16 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/07 22:31:13 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	ft_sort_five(t_stack **stack_a, t_stack **stack_b);
 void	ft_sort(t_stack **stack_a, t_stack **stack_b);
 void	ft_except_three(t_stack **stack_a, t_stack **stack_b);
 void	ft_position(t_stack **stack);
+int		ft_min_position(t_stack **stack);
 int		ft_target(t_stack **stack_a, int index_b);
 void	ft_target_position(t_stack **stack_a, t_stack **stack_b);
 void	ft_cost(t_stack **stack_a, t_stack **stack_b);
@@ -75,7 +76,6 @@ void	ft_execute(t_stack **stack_a, t_stack **stack_b, int cost_a,
 			int cost_b);
 void	ft_cheapest(t_stack **stack_a, t_stack **stack_b);
 
-int		ft_min_position(t_stack **stack);
 void	ft_rotate_to_min(t_stack **stack_a);
 
 int		main(int argc, char **argv);
