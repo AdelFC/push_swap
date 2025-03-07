@@ -2,33 +2,34 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = push_swap
 
-# Directories
 FT_PRINTF_DIR = lib/ftprintf
 GNL_DIR = lib/get_next_line
 LIBFT_DIR = lib/libft
 UTILS_DIR = utils
 SRC_DIR = src
+OBJ_DIR = obj
 INCS = -I includes
 
-# Source files
-SRC = $(SRC_DIR)/ft_errors.c $(SRC_DIR)/check_args.c \
-	$(SRC_DIR)/swap.c $(SRC_DIR)/push.c $(SRC_DIR)/rotate.c \
-	$(SRC_DIR)/reverse_rotate.c $(SRC_DIR)/push_swap.c \
-	$(SRC_DIR)/init.c $(SRC_DIR)/index.c $(SRC_DIR)/sort.c \
-	$(SRC_DIR)/sort2.c $(SRC_DIR)/sort_algo1.c \
-	$(SRC_DIR)/sort_algo2.c $(SRC_DIR)/sort_algo3.c \
+SRC = ft_errors.c check_args.c \
+	swap.c push.c rotate.c \
+	reverse_rotate.c push_swap.c \
+	init.c index.c sort.c \
+	sort2.c sort_algo1.c \
+	sort_algo2.c sort_algo3.c
 
-UTILS = $(UTILS_DIR)/ft_stackadd_back.c $(UTILS_DIR)/ft_stackclear.c \
-    $(UTILS_DIR)/ft_stackiter.c $(UTILS_DIR)/ft_stacknew.c \
-    $(UTILS_DIR)/ft_stackadd_front.c $(UTILS_DIR)/ft_stackdelone.c \
-    $(UTILS_DIR)/ft_stacklast.c $(UTILS_DIR)/ft_stacksize.c \
-    $(UTILS_DIR)/ft_atol.c $(UTILS_DIR)/ft_stack_min.c \
-	$(UTILS_DIR)/ft_stack_max.c $(UTILS_DIR)/ft_abs.c\
+UTILS = ft_stackadd_back.c ft_stackclear.c \
+    ft_stackiter.c ft_stacknew.c \
+    ft_stackadd_front.c ft_stackdelone.c \
+    ft_stacklast.c ft_stacksize.c \
+    ft_atol.c ft_stack_min.c \
+	ft_stack_max.c ft_abs.c
 
-# Object files
-OBJS = $(SRC:.c=.o) $(UTILS:.c=.o)
+OBJS = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o) $(UTILS:.c=.o))
 
-# Colors
+LIBS = -L$(FT_PRINTF_DIR) -lftprintf \
+       -L$(GNL_DIR) -lftgnl \
+       -L$(LIBFT_DIR) -lft
+
 GREEN = \033[0;92m
 BLUE = \033[0;94m
 CYAN = \033[0;96m
@@ -37,49 +38,44 @@ YELLOW = \033[0;93m
 all: $(FT_PRINTF_DIR)/libftprintf.a $(GNL_DIR)/libgnl.a $(LIBFT_DIR)/libft.a $(NAME)
 
 $(NAME): $(OBJS)
-	@$(CC) $(CFLAGS) $(OBJS) -L$(FT_PRINTF_DIR) -lftprintf \
-        -L$(GNL_DIR) -lftgnl -L$(LIBFT_DIR) -lft -o $(NAME)
-	@echo "$(GREEN)$(NAME) compiled!"
+	@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME)
+	@echo "$(GREEN) Compilation of $(NAME) completed!$(BLUE)"
 
-# Libraries
 $(FT_PRINTF_DIR)/libftprintf.a:
 	@make -C $(FT_PRINTF_DIR) --no-print-directory
-	@echo "$(CYAN)libftprintf compiled!"
 
 $(GNL_DIR)/libgnl.a:
 	@make -C $(GNL_DIR) --no-print-directory
-	@echo "$(CYAN)get_next_line compiled!"
 
 $(LIBFT_DIR)/libft.a:
 	@make -C $(LIBFT_DIR) --no-print-directory
-	@echo "$(CYAN)libft compiled!"
 
-# Rules
-$(SRC_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	@echo "$(CYAN)Compiled: $< $(BLUE)"
 
-$(UTILS_DIR)/%.o: $(UTILS_DIR)/%.c
+$(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c | $(OBJ_DIR)
 	@$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	@echo "$(CYAN)Compiled: $< $(BLUE)"
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+	@echo "$(YELLOW) Created directory: $(OBJ_DIR)$(BLUE)"
 
 clean:
-	@rm -f $(OBJS)
+	@rm -rf $(OBJ_DIR)
 	@make -C $(FT_PRINTF_DIR) clean --no-print-directory
 	@make -C $(GNL_DIR) clean --no-print-directory
 	@make -C $(LIBFT_DIR) clean --no-print-directory
-	@echo "$(BLUE)Object files cleaned!"
+	@echo "$(YELLOW) Cleaned object files.$(BLUE)"
 
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(FT_PRINTF_DIR) fclean --no-print-directory
 	@make -C $(GNL_DIR) fclean --no-print-directory
 	@make -C $(LIBFT_DIR) fclean --no-print-directory
-	@echo "$(BLUE)All compiled files cleaned!"
+	@echo "$(YELLOW) Removed $(NAME) and compiled files.$(BLUE)"
 
 re: fclean all
-	@echo "$(GREEN)Project fully rebuilt!"
-
-n:
-	@norminette -R CheckDefine
-	@echo "$(YELLOW)Norminette check completed!"
 
 .PHONY: all clean fclean re
