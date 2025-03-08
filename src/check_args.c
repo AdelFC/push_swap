@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:35:23 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/08 14:17:38 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/08 14:39:21 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	**ft_parse_args(int argc, char **argv, char ***split_argv)
 	*split_argv = NULL;
 	if (argc < 2)
 	{
-		ft_print_error(1);
 		return (NULL);
 	}
 	if (argc == 2)
