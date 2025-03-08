@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -no-pie
 NAME = push_swap
 
 FT_PRINTF_DIR = lib/ftprintf
