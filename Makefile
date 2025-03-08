@@ -1,5 +1,5 @@
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -g
 NAME = push_swap
 
 FT_PRINTF_DIR = lib/ftprintf
@@ -10,7 +10,7 @@ SRC_DIR = src
 OBJ_DIR = obj
 INCS = -I includes
 
-SRC = ft_errors.c check_args.c \
+SRC = check_args2.c check_args.c \
 	swap.c push.c rotate.c \
 	reverse_rotate.c push_swap.c \
 	init.c index.c sort.c \

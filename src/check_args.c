@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:35:23 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 22:48:43 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:52:28 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_double(char **argv)
 	int		j;
 	long	tmp;
 
-	i = 0;
+	i = 1;
 	while (argv[i])
 	{
 		tmp = ft_atol(argv[i]);
@@ -52,44 +52,63 @@ int	ft_check_double(char **argv)
 	return (0);
 }
 
-int	ft_check_args(int argc, char **argv)
+char	**ft_parse_args(int argc, char **argv, char ***split_argv)
 {
-	long	n;
-	char	**split_argv;
-
-	split_argv = NULL;
+	*split_argv = NULL;
 	if (argc < 2)
-		return (-1);
+	{
+		ft_print_error(1);
+		return (NULL);
+	}
 	if (argc == 2)
 	{
-		split_argv = ft_split(argv[1], ' ');
-		if (!split_argv[0])
-			return (ft_print_error(1), -1);
-		argv = split_argv;
+		*split_argv = ft_split(argv[1], ' ');
+		if (!*split_argv || !(*split_argv)[0])
+		{
+			ft_print_error(1);
+			return (NULL);
+		}
+		return (*split_argv);
 	}
-	while (*argv)
-	{
-		if (!ft_isnum(*argv))
-			return (ft_free_split(split_argv), ft_print_error(3), -1);
-		n = ft_atol(*argv);
-		if (n < INT_MIN || n > INT_MAX)
-			return (ft_free_split(split_argv), ft_print_error(4), -1);
-		argv++;
-	}
-	if (ft_check_double(split_argv ? split_argv : argv))
-		return (ft_free_split(split_argv), ft_print_error(2), -1);
-	return (ft_free_split(split_argv), 0);
+	return (argv + 1);
 }
 
-void	ft_free_split(char **split)
+int	ft_checker(char **argv, char **split_argv)
 {
-	int	i;
+	char	**tmp;
 
-	i = 0;
-	while (split[i])
+	tmp = argv;
+	while (*tmp)
 	{
-		free(split[i]);
-		i++;
+		if (!ft_isnum(*tmp) || ft_atol(*tmp) < INT_MIN
+			|| ft_atol(*tmp) > INT_MAX)
+		{
+			if (split_argv)
+				ft_free_split(split_argv);
+			return (ft_print_error(1), -1);
+		}
+		tmp++;
 	}
-	free(split);
+	if (ft_check_double(argv) != 0)
+	{
+		if (split_argv)
+			ft_free_split(split_argv);
+		return (ft_print_error(1), -1);
+	}
+	return (0);
+}
+
+int	ft_check_args(int argc, char **argv)
+{
+	char	**split_argv;
+	char	**parsed_argv;
+
+	parsed_argv = ft_parse_args(argc, argv, &split_argv);
+	if (!parsed_argv)
+		return (-1);
+	if (ft_checker(parsed_argv, split_argv) != 0)
+		return (-1);
+	if (split_argv)
+		ft_free_split(split_argv);
+	return (0);
 }

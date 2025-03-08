@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 15:50:17 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 16:19:17 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:52:12 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	ft_index(t_stack *stack_a, int stack_size)
 	t_stack	*max;
 	int		value;
 
+	if (!stack_a)
+		return ;
 	while (--stack_size > 0)
 	{
 		p = stack_a;

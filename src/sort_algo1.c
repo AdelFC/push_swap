@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:18:11 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 22:44:54 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:54:35 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,15 @@ void	ft_except_three(t_stack **stack_a, t_stack **stack_b)
 
 	if (!stack_a || !(*stack_a) || !stack_b)
 		return ;
-	count = 0;
 	size = ft_stacksize(*stack_a);
+	if (size <= 3)
+		return ;
 	i = 0;
+	count = 0;
 	while (size > 6 && i < size && count < size / 2)
 	{
+		if ((*stack_a)->index == -1)
+			return ;
 		if ((*stack_a)->index <= size / 2)
 		{
 			do_push(stack_a, stack_b, 'b');
@@ -71,6 +75,10 @@ int	ft_target(t_stack **stack_a, int index_b)
 	target_p = 0;
 	while (tmp)
 	{
+		if (tmp->index == -1)
+			return (-1);
+		if (tmp->position == -1)
+			tmp->position = 0;
 		if (tmp->index > index_b && tmp->index < target_holder)
 		{
 			target_holder = tmp->index;
@@ -82,7 +90,6 @@ int	ft_target(t_stack **stack_a, int index_b)
 		return (target_p);
 	return (ft_min_position(stack_a));
 }
-
 
 void	ft_target_position(t_stack **stack_a, t_stack **stack_b)
 {

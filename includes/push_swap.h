@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:27:38 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/07 22:31:13 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/08 00:05:01 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_print_error(int code);
 
 int		ft_isnum(char *str);
 int		ft_check_double(char **argv);
+char	**ft_parse_args(int argc, char **argv, char ***split_argv);
+int		ft_checker(char **argv, char **split_argv);
 int		ft_check_args(int argc, char **argv);
 void	ft_free_split(char **split);
 
