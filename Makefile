@@ -15,7 +15,8 @@ SRC = check_args2.c check_args.c \
 	reverse_rotate.c push_swap.c \
 	init.c index.c sort.c \
 	sort2.c sort_algo1.c \
-	sort_algo2.c sort_algo3.c
+	sort_algo2.c sort_algo3.c \
+	sort_algo4.c
 
 UTILS = ft_stackadd_back.c ft_stackclear.c \
     ft_stackiter.c ft_stacknew.c \

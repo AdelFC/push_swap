@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_args2.c                                      :+:      :+:    :+:   */
+/*   sort_algo4.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/05 14:08:55 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/09 12:55:14 by afodil-c         ###   ########.fr       */
+/*   Created: 2025/03/09 22:51:07 by afodil-c          #+#    #+#             */
+/*   Updated: 2025/03/09 22:51:25 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_print_error(int code)
+void	ft_loop(t_stack **stack_a, t_stack **stack_b, int size, int *count)
 {
-	if (code)
-		write(2, "Error\n", 6);
-}
+    int i;
 
-void	ft_free_split(char **split)
-{
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+    i = 0;
+    while (size > 6 && i < size && *count < size / 2)
+    {
+        if ((*stack_a)->index == -1)
+            return ;
+        if ((*stack_a)->index <= size / 2)
+        {
+            do_push(stack_a, stack_b, 'b');
+            (*count)++;
+        }
+        else
+            do_rotate(stack_a, 'a');
+        i++;
+    }
 }

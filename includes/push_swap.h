@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:27:38 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/08 00:05:01 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/09 22:51:55 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_stack	*ft_initialize_stack(int argc, char **argv, t_stack *stack_a);
 int		is_sorted(t_stack **stack);
 void	ft_index(t_stack *stack_a, int stack_size);
 
-int		ft_stack_min_position(t_stack *stack);
 void	ft_min_to_top(t_stack **stack, char type);
 
 void	push_swap(t_stack **stack_a, t_stack **stack_b, int stack_size);
@@ -63,6 +62,7 @@ void	ft_sort_five(t_stack **stack_a, t_stack **stack_b);
 
 void	ft_sort(t_stack **stack_a, t_stack **stack_b);
 void	ft_except_three(t_stack **stack_a, t_stack **stack_b);
+void	ft_loop(t_stack **stack_a, t_stack **stack_b, int size, int *count);
 void	ft_position(t_stack **stack);
 int		ft_min_position(t_stack **stack);
 int		ft_target(t_stack **stack_a, int index_b);
