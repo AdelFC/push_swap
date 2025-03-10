@@ -6,7 +6,7 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 13:35:23 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/08 14:39:21 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/10 17:27:19 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_check_double(char **argv)
 	int		j;
 	long	tmp;
 
-	i = 1;
+	i = 0;
 	while (argv[i])
 	{
 		tmp = ft_atol(argv[i]);
