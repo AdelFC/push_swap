@@ -6,31 +6,30 @@
 /*   By: afodil-c <afodil-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/06 17:18:11 by afodil-c          #+#    #+#             */
-/*   Updated: 2025/03/09 22:50:56 by afodil-c         ###   ########.fr       */
+/*   Updated: 2025/03/10 10:49:06 by afodil-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void ft_except_three(t_stack **stack_a, t_stack **stack_b)
+void	ft_except_three(t_stack **stack_a, t_stack **stack_b)
 {
-    int count;
-    int size;
+	int	count;
+	int	size;
 
-    if (!stack_a || !(*stack_a) || !stack_b)
-        return ;
-    size = ft_stacksize(*stack_a);
-    if (size <= 3)
-        return ;
-    count = 0;
-    ft_loop(stack_a, stack_b, size, &count);
-    while (ft_stacksize(*stack_a) > 3)
-    {
-        do_push(stack_a, stack_b, 'b');
-        count++;
-    }
+	if (!stack_a || !(*stack_a) || !stack_b)
+		return ;
+	size = ft_stacksize(*stack_a);
+	if (size <= 3)
+		return ;
+	count = 0;
+	ft_loop(stack_a, stack_b, size, &count);
+	while (ft_stacksize(*stack_a) > 3)
+	{
+		do_push(stack_a, stack_b, 'b');
+		count++;
+	}
 }
-
 
 void	ft_position(t_stack **stack)
 {
